@@ -278,7 +278,7 @@ parse (char *text)
                               { cur_mon = montail ? montail : monhead; }
                               else if (isdigit(*p))
                               { cur_mon = monhead;
-                                for (int i = 1; i != *p-'0' && cur_mon->next; i++)
+                                for (int i = 0; i != *p-'0' && cur_mon->next; i++)
                                     cur_mon = cur_mon->next;
                               }
                               else
@@ -477,9 +477,9 @@ rect_sort_cb (const void *p1, const void *p2)
     const xcb_rectangle_t *r1 = (xcb_rectangle_t *)p1;
     const xcb_rectangle_t *r2 = (xcb_rectangle_t *)p2;
 
-    if (r1->x < r2->x || r1->y < r2->y)
+    if (r1->x < r2->x)
         return -1;
-    if (r1->x > r2->x || r1->y > r2->y)
+    if (r1->x > r2->x)
         return  1;
 
     return 0;
